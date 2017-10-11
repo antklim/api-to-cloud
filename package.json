@@ -1,0 +1,24 @@
+{
+  "name": "swagger-integrator",
+  "version": "0.0.1",
+  "description": "This tool injects cloud specific integration points to API definition in Swagger.",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava",
+    "watch:test": "ava --watch"
+  },
+  "author": "Anton Klimenko <antklim@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "ava": "^0.22.0"
+  },
+  "ava": {
+    "files": [
+      "*_test.js"
+    ],
+    "source": [
+      "*.js"
+    ],
+    "failFast": true
+  }
+}

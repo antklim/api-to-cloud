@@ -1,0 +1,3 @@
+exports.merge = (api, integration) => {
+
+}
