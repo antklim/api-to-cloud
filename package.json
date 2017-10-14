@@ -10,7 +10,8 @@
   "author": "Anton Klimenko <antklim@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "ava": "^0.22.0"
+    "ava": "^0.22.0",
+    "js-yaml": "^3.10.0"
   },
   "ava": {
     "files": [

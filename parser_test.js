@@ -1,33 +1,65 @@
 const test = require('ava')
+const yaml = require('js-yaml')
+const path = require('path')
 const parser = require('./parser')
 
-test.todo('parse() should call parseJson() when *.json file passed')
-test.todo('parse() should call parseYaml() when *.yaml|yml file passed')
-
-test.todo('parse() should resolve object when parseJson() succeed')
-test.todo('parse() should resolve object when parseYaml() succeed')
-
-test.todo('parse() should reject when parseJson() failed')
-test.todo('parse() should reject when parseYaml() failed')
-
-test('parseJson() should resolve object when succeed', t => {
-  t.plan(1)
-  return parser.parseJson('{"a": 1}').then(data => {
-    t.deepEqual(data, {a: 1})
-  })
+test('for() should return parser for yaml', t => {
+  const parsers = ['Yaml', 'yaml', 'yml'].map(parser.for)
+  const allParsersAreValid = parsers.every(p => p === yaml.safeLoad)
+  t.true(allParsersAreValid)
 })
 
-test('parseJson() should reject when failed', t => {
-  t.plan(1)
-  return parser.parseJson('{"a":}')
-    .then(() => t.fail('Should not parse'))
+test('for() should return parser for json', t => {
+  const parsers = ['Json', 'json', 'JSON'].map(parser.for)
+  const allParsersAreValid = parsers.every(p => p === JSON.parse)
+  t.true(allParsersAreValid)
+})
+
+test('for() should return null for unsupported format', t => {
+  t.is(parser.for('txt'), null)
+})
+
+test('parse() should reject format not supported', t => {
+  return parser.parse(path.join(__dirname, 'data', 'test.txt'))
     .catch(err => {
-      t.regex(err.message, /Unexpected token*/)
+      t.is(err.message, 'Unsupported format \'txt\'')
     })
 })
 
-test.todo('parseYaml() should resolve object when succeed')
-test.todo('parseYaml() should reject when failed')
+test('parse() should reject file cannot be read', t => {
+  return parser.parse(path.join(__dirname, 'data', 'test1.json'))
+    .catch(err => {
+      t.regex(err.message, /no such file or directory/)
+    })
+})
+
+test('parse() should reject when corrupted JSON passed', t => {
+  return parser.parse(path.join(__dirname, 'data', 'test-fail.json'))
+    .catch(err => {
+      t.regex(err.message, /Unexpected token/)
+    })
+})
+
+test('parse() should reject when corrupted YAML passed', t => {
+  return parser.parse(path.join(__dirname, 'data', 'test-fail.yaml'))
+    .catch(err => {
+      t.regex(err.message, /bad indentation/)
+    })
+})
+
+test('parse() should resolve object from JSON', t => {
+  return parser.parse(path.join(__dirname, 'data', 'test.json'))
+    .then(data => {
+      t.deepEqual(data, {a: 1})
+    })
+})
+
+test('parse() should resolve object from YAML', t => {
+  return parser.parse(path.join(__dirname, 'data', 'test.yaml'))
+    .then(data => {
+      t.deepEqual(data, {a: 1, b: {c: 2}})
+    })
+})
 
 test.todo('toJson() should resolve JSON string when succeed')
 test.todo('toJson() should reject when failed')
