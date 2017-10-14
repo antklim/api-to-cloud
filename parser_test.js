@@ -61,8 +61,10 @@ test('parse() should resolve object from YAML', t => {
     })
 })
 
-test.todo('toJson() should resolve JSON string when succeed')
-test.todo('toJson() should reject when failed')
+test('toJson() should return JSON string', t => {
+  t.is(parser.toJson({a: 1, b: {c: 'abc'}}), '{"a":1,"b":{"c":"abc"}}')
+})
 
-test.todo('toYaml() should resolve YAML string when succeed')
-test.todo('toYaml() should reject when failed')
+test('toYaml() should return YAML', t => {
+  t.is(parser.toYaml({a: 1, b: {c: 'abc'}}), 'a: 1\nb:\n  c: abc\n')
+})

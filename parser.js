@@ -31,6 +31,13 @@ exports.parse = file => {
     })
 }
 
+/**
+ * The method returns parser for the format
+ *
+ * format <String> - file format to parse
+ *
+ * return <Function> - parser function or null
+ */
 exports.for = format => {
   switch (true) {
     case /yaml|yml/i.test(format): return yaml.safeLoad
@@ -44,17 +51,15 @@ exports.for = format => {
  *
  * data <Object> - data object
  *
- * return <Promise> - resolves with the JSON string representation of data
- *                  - rejects when failed
+ * return <String> - JSON string representation of data
  */
-exports.toJson = data => {}
+exports.toJson = data => JSON.stringify(data)
 
 /**
  * The method converts data object into YAML string.
  *
  * data <Object> - data object
  *
- * return <Promise> - resolves with the JSON string representation of data
- *                  - rejects when failed
+ * return <String> - YAML string representation of data
  */
-exports.toYaml = data => {}
+exports.toYaml = data => yaml.safeDump(data)
