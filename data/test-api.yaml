@@ -1,0 +1,153 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /pets:
+    get:
+      description: List all pets
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: An array of pets
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/Pets'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/InternalServerError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      description: Create a pet
+      responses:
+        201:
+          description: New pet successfully created
+          headers:
+            Location:
+              type: string
+        400:
+          description: Invalid input
+          schema:
+            $ref: '#/definitions/InvalidInputError'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/InternalServerError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /pets/{petId}:
+    get:
+      description: Information for a specific pet
+      parameters:
+        - name: petId
+          in: path
+          required: true
+          description: The id of the pet to retrieve
+          type: string
+      responses:
+        200:
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/Pet'
+        404:
+          description: Pet not found
+          schema:
+            $ref: '#/definitions/NotFoundError'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/InternalServerError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Pet:
+    type: object
+    required:
+      - id
+      - name
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 1
+      name:
+        type: string
+        example: "Joe"
+      tag:
+        type: string
+        example: "joedog"
+  Pets:
+    type: array
+    items:
+      $ref: '#/definitions/Pet'
+  Error:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+  InternalServerError:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+        example: 500
+      message:
+        type: string
+        example: Internal server error
+  InvalidInputError:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+        example: 400
+      message:
+        type: string
+        example: Internal input error
+  NotFoundError:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+        example: 404
+      message:
+        type: string
+        example: Resource not found error

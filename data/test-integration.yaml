@@ -1,0 +1,29 @@
+/pets:
+  get:
+    x-amazon-apigateway-integration:
+      responses:
+        default:
+          statusCode: "200"
+      requestTemplates:
+        application/json: "{\"statusCode\": 200}"
+      passthroughBehavior: "when_no_match"
+      type: "mock"
+  post:
+    x-amazon-apigateway-integration:
+      responses:
+        default:
+          statusCode: "200"
+      requestTemplates:
+        application/json: "{\"statusCode\": 200}"
+      passthroughBehavior: "when_no_match"
+      type: "mock"
+/pets/{petId}:
+  get:
+    x-amazon-apigateway-integration:
+      responses:
+        default:
+          statusCode: "200"
+      requestTemplates:
+        application/json: "{\"statusCode\": 200}"
+      passthroughBehavior: "when_no_match"
+      type: "mock"
