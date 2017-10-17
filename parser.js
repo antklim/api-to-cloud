@@ -6,11 +6,8 @@ const yaml = require('js-yaml')
 
 /**
  * The method parses file. The following file types are supported: YAML, JSON.
- *
- * file <String> - path to the file to parse
- *
- * return <Promise> - resolves with the file data parsed into object
- *                  - rejects when file is unawailable or parse failed
+ * @param  {String} file path to the file to parse
+ * @return {Promise}     resolves with the file data parsed into object
  */
 exports.parse = file => {
   const format = path.extname(file).substring(1)
@@ -32,11 +29,9 @@ exports.parse = file => {
 }
 
 /**
- * The method returns parser for the format
- *
- * format <String> - file format to parse
- *
- * return <Function> - parser function or null
+ * The method returns parser for the format.
+ * @param  {String} format file format to parse
+ * @return {Function}      parser function or null
  */
 exports.for = format => {
   switch (true) {
@@ -48,18 +43,14 @@ exports.for = format => {
 
 /**
  * The method converts data object into JSON string.
- *
- * data <Object> - data object
- *
- * return <String> - JSON string representation of data
+ * @param  {Object} data data object
+ * @return {String}      JSON string representation of data
  */
 exports.toJson = data => JSON.stringify(data)
 
 /**
  * The method converts data object into YAML string.
- *
- * data <Object> - data object
- *
- * return <String> - YAML string representation of data
+ * @param  {Object} data data object
+ * @return {String}      YAML string representation of data
  */
 exports.toYaml = data => yaml.safeDump(data)
