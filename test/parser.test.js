@@ -1,7 +1,7 @@
 const test = require('ava')
 const yaml = require('js-yaml')
 const path = require('path')
-const parser = require('./parser')
+const parser = require('../lib/parser')
 
 test('for() should return parser for yaml', t => {
   const parsers = ['Yaml', 'yaml', 'yml'].map(parser.for)
@@ -20,42 +20,42 @@ test('for() should return null for unsupported format', t => {
 })
 
 test('parse() should reject format not supported', t => {
-  return parser.parse(path.join(__dirname, 'data', 'test.txt'))
+  return parser.parse(path.join(__dirname, 'fixtures', 'test.txt'))
     .catch(err => {
       t.is(err.message, 'Unsupported format \'txt\'')
     })
 })
 
 test('parse() should reject file cannot be read', t => {
-  return parser.parse(path.join(__dirname, 'data', 'test1.json'))
+  return parser.parse(path.join(__dirname, 'fixtures', 'test1.json'))
     .catch(err => {
       t.regex(err.message, /no such file or directory/)
     })
 })
 
 test('parse() should reject when corrupted JSON passed', t => {
-  return parser.parse(path.join(__dirname, 'data', 'test-fail.json'))
+  return parser.parse(path.join(__dirname, 'fixtures', 'test-fail.json'))
     .catch(err => {
       t.regex(err.message, /Unexpected token/)
     })
 })
 
 test('parse() should reject when corrupted YAML passed', t => {
-  return parser.parse(path.join(__dirname, 'data', 'test-fail.yaml'))
+  return parser.parse(path.join(__dirname, 'fixtures', 'test-fail.yaml'))
     .catch(err => {
       t.regex(err.message, /bad indentation/)
     })
 })
 
 test('parse() should resolve object from JSON', t => {
-  return parser.parse(path.join(__dirname, 'data', 'test.json'))
+  return parser.parse(path.join(__dirname, 'fixtures', 'test.json'))
     .then(data => {
       t.deepEqual(data, {a: 1})
     })
 })
 
 test('parse() should resolve object from YAML', t => {
-  return parser.parse(path.join(__dirname, 'data', 'test.yaml'))
+  return parser.parse(path.join(__dirname, 'fixtures', 'test.yaml'))
     .then(data => {
       t.deepEqual(data, {a: 1, b: {c: 2}})
     })

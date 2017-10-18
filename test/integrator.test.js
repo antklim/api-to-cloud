@@ -1,5 +1,5 @@
 const test = require('ava')
-const integrator = require('./integrator')
+const integrator = require('../lib/integrator')
 
 test.beforeEach(t => {
   t.context.api = {
@@ -46,7 +46,7 @@ test.beforeEach(t => {
   }
 })
 
-test('extend()', t => {
+test.skip('extend()', t => {
   const expected = {
     paths: {
       '/path1': {
@@ -89,7 +89,7 @@ test('extend()', t => {
   t.true(actual != t.context.api, 'extend() should not mutate api object, but return a new extended object')
 })
 
-test('reduceIntegrations() should reduce object into tuples', t => {
+test.skip('reduceIntegrations() should reduce object into tuples', t => {
   const expected = [
     ['/path1.get', {integrationA: 'integrationABody', integrationB: 'integrationBBody'}],
     ['/path1.post', {integrationC: 'integrationCBody'}],

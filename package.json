@@ -17,10 +17,10 @@
   },
   "ava": {
     "files": [
-      "*_test.js"
+      "test/**.test.js"
     ],
     "source": [
-      "*.js"
+      "lib/*.js"
     ],
     "failFast": true
   }
