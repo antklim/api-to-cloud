@@ -1,0 +1,15 @@
+plugins:
+  - ava
+extends: plugin:ava/recommended
+rules:
+  arrow-body-style:
+    - off
+  arrow-parens:
+    - off
+  eqeqeq:
+    - warn
+  global-require:
+    - off
+  no-param-reassign:
+    - error
+    - props: false

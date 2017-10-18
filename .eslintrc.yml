@@ -1,0 +1,37 @@
+extends: airbnb-base
+env:
+  es6: true
+  node: true
+root: true
+rules:
+  arrow-body-style:
+    - error
+    - as-needed
+    - requireReturnForObjectLiteral: true
+  arrow-parens:
+    - error
+    - as-needed
+    - requireForBlockBody: true
+  max-len:
+    - error
+    -
+      code: 120
+      tabWidth: 2
+      ignoreComments: false
+      ignoreStrings: false
+  no-trailing-spaces:
+    - error
+  no-unused-vars:
+    - warn
+  object-curly-spacing:
+    - warn
+    - never
+  quotes:
+    - warn
+    - single
+  quote-props:
+    - error
+    - consistent-as-needed
+  semi:
+    - error
+    - never

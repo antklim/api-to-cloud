@@ -15,34 +15,34 @@ test('extend()', t => {
           parameters: [],
           responses: {},
           integrationA: 'integrationABody',
-          integrationB: 'integrationBBody'
+          integrationB: 'integrationBBody',
         },
         post: {
           description: 'post path1',
           parameters: [],
           responses: {},
-          integrationC: 'integrationCBody'
+          integrationC: 'integrationCBody',
         },
         put: {
           description: 'put path1',
           parameters: [],
-          responses: {}
-        }
+          responses: {},
+        },
       },
       '/path2': {
         get: {
           description: 'get path2',
           parameters: [],
-          responses: {}
+          responses: {},
         },
         delete: {
           description: 'delete path2',
           parameters: [],
           responses: {},
-          integrationD: 'integrationDBody'
-        }
-      }
-    }
+          integrationD: 'integrationDBody',
+        },
+      },
+    },
   }
   const actual = integrator.extend(t.context.api, t.context.integrations)
   t.deepEqual(actual, expected)
@@ -53,7 +53,7 @@ test('reduceIntegrations() should reduce object into tuples', t => {
   const expected = [
     ['/path1.get', {integrationA: 'integrationABody', integrationB: 'integrationBBody'}],
     ['/path1.post', {integrationC: 'integrationCBody'}],
-    ['/path2.delete', {integrationD: 'integrationDBody'}]
+    ['/path2.delete', {integrationD: 'integrationDBody'}],
   ]
 
   t.deepEqual(integrator.reduceIntegrations(t.context.integrations), expected)

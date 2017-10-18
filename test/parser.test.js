@@ -47,18 +47,12 @@ test('parse() should reject when corrupted YAML passed', t => {
     })
 })
 
-test('parse() should resolve object from JSON', t => {
-  return parser.parse(path.join(__dirname, 'fixtures', 'test.json'))
-    .then(data => {
-      t.deepEqual(data, {a: 1})
-    })
+test('parse() should resolve object from JSON', async t => {
+  t.deepEqual(await parser.parse(path.join(__dirname, 'fixtures', 'test.json')), {a: 1})
 })
 
-test('parse() should resolve object from YAML', t => {
-  return parser.parse(path.join(__dirname, 'fixtures', 'test.yaml'))
-    .then(data => {
-      t.deepEqual(data, {a: 1, b: {c: 2}})
-    })
+test('parse() should resolve object from YAML', async t => {
+  t.deepEqual(await parser.parse(path.join(__dirname, 'fixtures', 'test.yaml')), {a: 1, b: {c: 2}})
 })
 
 test('toJson() should return JSON string', t => {
