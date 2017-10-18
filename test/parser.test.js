@@ -19,32 +19,24 @@ test('for() should return null for unsupported format', t => {
   t.is(parser.for('txt'), null)
 })
 
-test('parse() should reject format not supported', t => {
-  return parser.parse(path.join(__dirname, 'fixtures', 'test.txt'))
-    .catch(err => {
-      t.is(err.message, 'Unsupported format \'txt\'')
-    })
+test('parse() should reject format not supported', async t => {
+  const err = await t.throws(parser.parse(path.join(__dirname, 'fixtures', 'test.txt')))
+  t.is(err.message, 'Unsupported format \'txt\'')
 })
 
-test('parse() should reject file cannot be read', t => {
-  return parser.parse(path.join(__dirname, 'fixtures', 'test1.json'))
-    .catch(err => {
-      t.regex(err.message, /no such file or directory/)
-    })
+test('parse() should reject file cannot be read', async t => {
+  const err = await t.throws(parser.parse(path.join(__dirname, 'fixtures', 'test1.json')))
+  t.regex(err.message, /no such file or directory/)
 })
 
-test('parse() should reject when corrupted JSON passed', t => {
-  return parser.parse(path.join(__dirname, 'fixtures', 'test-fail.json'))
-    .catch(err => {
-      t.regex(err.message, /Unexpected token/)
-    })
+test('parse() should reject when corrupted JSON passed', async t => {
+  const err = await t.throws(parser.parse(path.join(__dirname, 'fixtures', 'test-fail.json')))
+  t.regex(err.message, /Unexpected token/)
 })
 
-test('parse() should reject when corrupted YAML passed', t => {
-  return parser.parse(path.join(__dirname, 'fixtures', 'test-fail.yaml'))
-    .catch(err => {
-      t.regex(err.message, /bad indentation/)
-    })
+test('parse() should reject when corrupted YAML passed', async t => {
+  const err = await t.throws(parser.parse(path.join(__dirname, 'fixtures', 'test-fail.yaml')))
+  t.regex(err.message, /bad indentation/)
 })
 
 test('parse() should resolve object from JSON', async t => {
