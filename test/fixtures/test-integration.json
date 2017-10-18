@@ -4,6 +4,7 @@
     "post": {"integrationC": "integrationCBody"}
   },
   "/path2": {
-    "delete": {"integrationD": "integrationDBody"}
+    "delete": {"integrationD": "integrationDBody"},
+    "put": {"integrationE": "integrationEBody"}
   }
 }

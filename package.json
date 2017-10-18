@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "ava",
-    "watch:test": "ava --watch"
+    "test": "cross-env NODE_ENV=test ava",
+    "coverage": "cross-env NODE_ENV=test nyc ava",
+    "coverage:report": "nyc report --reporter=html",
+    "watch:test": "cross-env NODE_ENV=test ava --watch"
   },
   "author": "Anton Klimenko <antklim@gmail.com>",
   "license": "MIT",
-  "engines" : {
-    "node" : ">=7.6.0"
+  "engines": {
+    "node": ">=7.6.0"
   },
   "dependencies": {
     "ava": "^0.22.0",
@@ -29,9 +31,11 @@
     "failFast": true
   },
   "devDependencies": {
+    "cross-env": "^5.1.0",
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-ava": "^4.2.2",
-    "eslint-plugin-import": "^2.7.0"
+    "eslint-plugin-import": "^2.7.0",
+    "nyc": "^11.2.1"
   }
 }

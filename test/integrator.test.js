@@ -54,6 +54,7 @@ test('reduceIntegrations() should reduce object into tuples', t => {
     ['/path1.get', {integrationA: 'integrationABody', integrationB: 'integrationBBody'}],
     ['/path1.post', {integrationC: 'integrationCBody'}],
     ['/path2.delete', {integrationD: 'integrationDBody'}],
+    ['/path2.put', {integrationE: 'integrationEBody'}],
   ]
 
   t.deepEqual(integrator.reduceIntegrations(t.context.integrations), expected)
