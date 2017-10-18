@@ -1,0 +1,9 @@
+{
+  "/path1": {
+    "get": {"integrationA": "integrationABody", "integrationB": "integrationBBody"},
+    "post": {"integrationC": "integrationCBody"}
+  },
+  "/path2": {
+    "delete": {"integrationD": "integrationDBody"}
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "paths": {
+    "/path1": {
+      "get": {
+        "description": "get path1",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "description": "post path1",
+        "parameters": [],
+        "responses": {}
+      },
+      "put": {
+        "description": "put path1",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/path2": {
+      "get": {
+        "description": "get path2",
+        "parameters": [],
+        "responses": {}
+      },
+      "delete": {
+        "description": "delete path2",
+        "parameters": [],
+        "responses": {}
+      }
+    }
+  }
+}
