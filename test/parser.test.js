@@ -46,11 +46,3 @@ test('parse() should resolve object from JSON', async t => {
 test('parse() should resolve object from YAML', async t => {
   t.deepEqual(await parser.parse(path.join(__dirname, 'fixtures', 'test.yaml')), {a: 1, b: {c: 2}})
 })
-
-test('toJson() should return JSON string', t => {
-  t.is(parser.toJson({a: 1, b: {c: 'abc'}}), '{"a":1,"b":{"c":"abc"}}')
-})
-
-test('toYaml() should return YAML', t => {
-  t.is(parser.toYaml({a: 1, b: {c: 'abc'}}), 'a: 1\nb:\n  c: abc\n')
-})
