@@ -1,4 +1,5 @@
 # API to Cloud
+[![Build Status](https://travis-ci.org/antklim/api-to-cloud.svg?branch=master)](https://travis-ci.org/antklim/api-to-cloud)
 
 This tool injects cloud specific integration points to API definition in Swagger.
 
