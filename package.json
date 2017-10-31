@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "cross-env NODE_ENV=test ava",
-    "coverage": "cross-env NODE_ENV=test nyc ava",
+    "test": "cross-env NODE_ENV=test nyc ava",
     "coverage:report": "nyc report --reporter=html",
     "watch:test": "cross-env NODE_ENV=test ava --watch"
   },
@@ -29,6 +28,20 @@
       "lib/*.js"
     ],
     "failFast": true
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": true,
+    "lines": 80,
+    "statements": 80,
+    "functions": 80,
+    "branches": 80,
+    "watermarks": {
+      "lines": [80, 95],
+      "functions": [80, 95],
+      "branches": [80, 95],
+      "statements": [80, 95]
+    }
   },
   "devDependencies": {
     "ava": "^0.23.0",
