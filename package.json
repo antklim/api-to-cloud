@@ -16,12 +16,10 @@
     "node": ">=7.6.0"
   },
   "dependencies": {
-    "ava": "^0.22.0",
     "clone": "^2.1.1",
     "commander": "^2.11.0",
     "js-yaml": "^3.10.0",
-    "object-path": "^0.11.4",
-    "testdouble": "^3.2.6"
+    "object-path": "^0.11.4"
   },
   "ava": {
     "files": [
@@ -33,11 +31,13 @@
     "failFast": true
   },
   "devDependencies": {
+    "ava": "^0.23.0",
     "cross-env": "^5.1.0",
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-ava": "^4.2.2",
     "eslint-plugin-import": "^2.7.0",
-    "nyc": "^11.2.1"
+    "nyc": "^11.2.1",
+    "testdouble": "^3.2.6"
   }
 }
