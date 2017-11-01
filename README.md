@@ -10,7 +10,7 @@ This tool injects cloud specific integration points to API definition in Swagger
 
 ## Example Use
 ```
-$ node lib/index.js --api pure-api.yaml --integration cloud-integration.yaml --output cloud-api.yaml
+$ ./cli.js --api pure-api.yaml --integration cloud-integration.yaml --output cloud-api.yaml
 ```
 
 ## API Reference
