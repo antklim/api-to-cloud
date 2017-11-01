@@ -4,7 +4,7 @@ const td = require('testdouble')
 const yaml = require('js-yaml')
 const encoder = require('../lib/encoder')
 
-test.afterEach(t => td.reset())
+test.afterEach(t => td.reset()) // eslint-disable-line no-unused-vars
 
 test('for() should return encoder for yaml', t => {
   const encoders = ['Yaml', 'yaml', 'yml'].map(encoder.for)
