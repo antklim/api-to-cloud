@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint .",
     "test": "cross-env NODE_ENV=test nyc ava",
-    "coverage:report": "nyc report --reporter=html",
+    "coverage:report:html": "nyc report --reporter=html",
+    "coverage:report:codacy": "cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage",
     "watch:test": "cross-env NODE_ENV=test ava --watch"
   },
   "author": "Anton Klimenko <antklim@gmail.com>",
@@ -41,10 +42,15 @@
       "functions": [80, 95],
       "branches": [80, 95],
       "statements": [80, 95]
-    }
+    },
+    "reporter": [
+      "lcovonly",
+      "text"
+    ]
   },
   "devDependencies": {
     "ava": "^0.23.0",
+    "codacy-coverage": "^2.0.3",
     "cross-env": "^5.1.0",
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
