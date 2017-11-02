@@ -5,20 +5,37 @@
 
 This tool injects cloud specific integration points to API definition in Swagger.
 
-## Getting Started
-### Installing
+## Installing
+This is a NodeJS module available through the [npm](https://www.npmjs.com/) register.
 
-## Example Use
+Installation is done using the `npm install` command:
+
 ```
-$ ./cli.js --api pure-api.yaml --integration cloud-integration.yaml --output cloud-api.yaml
+$ npm install api-to-cloud --save
+```
+
+You can also clone [api-to-cloud](https://github.com/antklim/api-to-cloud) repository and run tests, coverage and linter:
+```
+$ git clone git://github.com/antklim/api-to-cloud.git
+$ cd api-to-cloud
+$ npm install
+$ npm run lint
+$ npm test
+```
+
+## Usage
+```
+$ ./cli.js --api pure-api.yaml \
+           --integration cloud-integration.yaml \
+           --output cloud-api.yaml
 ```
 
 ## API Reference
-## Running the tests
 
 ## Built With
 * [js-yaml](https://github.com/nodeca/js-yaml) - YAML parser/encoder for JavaScript
 * [ava](https://github.com/avajs/ava) - Futuristic test runner
+* [ESLint](https://eslint.org/) - JavaScript linting utility
 * [testdouble](https://github.com/testdouble/testdouble.js) - JavaScript test mocking library
 
 ## Authors
