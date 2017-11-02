@@ -37,7 +37,101 @@ $ node_modules/.bin/api-to-cloud --api test-api.yaml \
                                  --output aws.yaml
 ```
 
-## API Reference
+## Programmatic API
+### parser
+The `parser` module provides utilities for parsing of API and integration point descriptions. Currently supported two formats: YAML and JSON. It can be accessed using:
+```javascript
+const {parser} = require('api-to-cloud')
+```
+
+### parser.parse(file)
+* `file` String - path to the file to parse
+* Returns: Promise - resolves with the file data parsed into object
+
+Example:
+```javascript
+parser.parse('input.yaml')
+  .then(data => console.log(JSON.stringify(data, null, 2)))
+  .catch(err => console.error(err))
+```
+
+### parser.for(format)
+* `format` String - file format to parse
+* Returns: Function - parser function or null
+
+### encoder
+The `encoder` module provides utilities for formatting and storing of API definition. Currently supported two formats: YAML and JSON. It can be accessed using:
+```javascript
+const {encoder} = require('api-to-cloud')
+```
+
+### encoder.save(data, file, format)
+* `data` Object - data to write to file
+* `file` String - path to file to write
+* `format` String - format to save payload in
+* Returns: Promise - resolves when payload written into the file
+
+Example:
+```javascript
+encoder.save({'foo': 'bar'}, 'example.yaml', 'yaml')
+  .then(() => console.log('Payload written into \'example.yaml\''))
+  .catch(err => console.error(err))
+```
+
+### encoder.for(format)
+* `format` String - file format to encode to
+* Returns: Function - encoder function or null
+
+### integrator
+The `integrator` module provides utilities for merging pure API description in `Swagger` format with cloud specific integration points. It can be accessed using:
+```javascript
+const {integrator} = require('api-to-cloud')
+```
+
+### integrator.extend(api, integrationPaths)
+* `api` Object - Swagger API definition
+* `integrationPaths` Object - cloud integration points to add to API
+* Returns: Object - extended Swagger API (API + integrations)
+
+Format of the integration points object:
+```yaml
+path:
+  method:
+    integrationPointA: ...
+```
+
+Example of integration object:
+```yaml
+/pets:
+  get:
+    x-amazon-apigateway-integration:
+      responses:
+        default:
+          statusCode: "200"
+      requestTemplates:
+        application/json: "{\"statusCode\": 200}"
+      passthroughBehavior: "when_no_match"
+      type: "mock"
+  post:
+    x-amazon-apigateway-integration:
+      responses:
+        default:
+          statusCode: "200"
+      requestTemplates:
+        application/json: "{\"statusCode\": 200}"
+      passthroughBehavior: "when_no_match"
+      type: "mock"
+/pets/{petId}:
+  get:
+    x-amazon-apigateway-integration:
+      responses:
+        default:
+          statusCode: "200"
+      requestTemplates:
+        application/json: "{\"statusCode\": 200}"
+      passthroughBehavior: "when_no_match"
+      type: "mock"
+```
 
 ## Built With
 * [js-yaml](https://github.com/nodeca/js-yaml) - YAML parser/encoder for JavaScript
