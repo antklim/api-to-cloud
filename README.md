@@ -15,6 +15,27 @@ $ npm install @antklim/api-to-cloud
 ```
 
 ## Usage
+After installation `api-to-cloud` CLI will be available in `node_modules/.bin`.
+```
+Usage: api-to-cloud [options]
+
+
+  Options:
+
+    -V, --version             output the version number
+    -a, --api <path>          API definition file path
+    -i, --integration <path>  API integration file path
+    -o, --output <path>       path to output extended API file
+    -f, --format [format]     output file format [yaml|yml|json], default 'yaml'
+    -h, --help                output usage information
+```
+
+Run the following command to produce swagger file with AWS specific integration points:
+```
+$ node_modules/.bin/api-to-cloud --api test-api.yaml \
+                                 --integration test-integration.yaml \
+                                 --output aws.yaml
+```
 
 ## API Reference
 
