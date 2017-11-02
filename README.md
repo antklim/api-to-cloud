@@ -41,7 +41,7 @@ $ node_modules/.bin/api-to-cloud --api test-api.yaml \
 ### parser
 The `parser` module provides utilities for parsing of API and integration point descriptions. Currently supported two formats: YAML and JSON. It can be accessed using:
 ```javascript
-const {parser} = require('api-to-cloud')
+const {parser} = require('@antklim/api-to-cloud')
 ```
 
 ### parser.parse(file)
@@ -62,7 +62,7 @@ parser.parse('input.yaml')
 ### encoder
 The `encoder` module provides utilities for formatting and storing of API definition. Currently supported two formats: YAML and JSON. It can be accessed using:
 ```javascript
-const {encoder} = require('api-to-cloud')
+const {encoder} = require('@antklim/api-to-cloud')
 ```
 
 ### encoder.save(data, file, format)
@@ -85,7 +85,7 @@ encoder.save({'foo': 'bar'}, 'example.yaml', 'yaml')
 ### integrator
 The `integrator` module provides utilities for merging pure API description in `Swagger` format with cloud specific integration points. It can be accessed using:
 ```javascript
-const {integrator} = require('api-to-cloud')
+const {integrator} = require('@antklim/api-to-cloud')
 ```
 
 ### integrator.extend(api, integrationPaths)
