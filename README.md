@@ -97,7 +97,7 @@ Format of the integration points object:
 ```yaml
 path:
   method:
-    integrationPointA: ...
+    integrationPoint: ...
 ```
 
 Example of integration object:
