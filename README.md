@@ -11,7 +11,7 @@ This is a NodeJS module available through the [npm](https://www.npmjs.com/) regi
 Installation is done using the `npm install` command:
 
 ```
-$ npm install api-to-cloud --save
+$ npm install @antklim/api-to-cloud
 ```
 
 You can also clone [api-to-cloud](https://github.com/antklim/api-to-cloud) repository and run tests, coverage and linter:

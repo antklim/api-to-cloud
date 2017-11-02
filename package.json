@@ -1,6 +1,6 @@
 {
-  "name": "api-to-cloud",
-  "version": "0.0.1",
+  "name": "@antklim/api-to-cloud",
+  "version": "0.1.0",
   "description": "This tool injects cloud specific integration points to API definition in Swagger.",
   "main": "index.js",
   "scripts": {
@@ -49,14 +49,44 @@
     "functions": 80,
     "branches": 80,
     "watermarks": {
-      "lines": [80, 95],
-      "functions": [80, 95],
-      "branches": [80, 95],
-      "statements": [80, 95]
+      "lines": [
+        80,
+        95
+      ],
+      "functions": [
+        80,
+        95
+      ],
+      "branches": [
+        80,
+        95
+      ],
+      "statements": [
+        80,
+        95
+      ]
     },
     "reporter": [
       "lcovonly",
       "text"
     ]
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antklim/api-to-cloud.git"
+  },
+  "keywords": [
+    "api",
+    "swagger",
+    "cloud",
+    "integration"
+  ],
+  "bugs": {
+    "url": "https://github.com/antklim/api-to-cloud/issues"
+  },
+  "homepage": "https://github.com/antklim/api-to-cloud#readme"
 }
