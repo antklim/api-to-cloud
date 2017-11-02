@@ -14,21 +14,7 @@ Installation is done using the `npm install` command:
 $ npm install @antklim/api-to-cloud
 ```
 
-You can also clone [api-to-cloud](https://github.com/antklim/api-to-cloud) repository and run tests, coverage and linter:
-```
-$ git clone git://github.com/antklim/api-to-cloud.git
-$ cd api-to-cloud
-$ npm install
-$ npm run lint
-$ npm test
-```
-
 ## Usage
-```
-$ ./cli.js --api pure-api.yaml \
-           --integration cloud-integration.yaml \
-           --output cloud-api.yaml
-```
 
 ## API Reference
 

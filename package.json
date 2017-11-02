@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "This tool injects cloud specific integration points to API definition in Swagger.",
   "main": "index.js",
+  "bin": "cli.js",
   "scripts": {
     "lint": "eslint .",
     "test": "cross-env NODE_ENV=test nyc ava",
