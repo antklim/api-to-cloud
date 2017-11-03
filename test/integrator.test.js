@@ -43,11 +43,33 @@ test('extend()', t => {
         },
       },
     },
+    definitions: {
+      Pet: {
+        type: 'object',
+        required: ['id', 'name'],
+        properties: {
+          id: {type: 'integer', format: 'int64', example: 1},
+          name: {type: 'string', example: 'Joe'},
+          tag: {type: 'string', example: 'joedog'},
+        },
+      },
+      Error: {
+        required: ['code', 'message'],
+        properties: {
+          code: {type: 'integer', format: 'int32', example: 404},
+          message: {type: 'string', example: 'Resource Not Found'},
+        },
+      },
+    },
   }
   const actual = integrator.extend(t.context.api, t.context.integrations)
   t.deepEqual(actual, expected)
+  /* eslint-disable eqeqeq */
   t.true(actual != t.context.api, 'extend() should not mutate api object, but return a new extended object')
+  /* eslint-enable eqeqeq */
 })
+
+test.todo('extend() should exclude fields unsupported by AWS')
 
 test('reduceIntegrations() should reduce object into tuples', t => {
   const expected = [
