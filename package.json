@@ -6,7 +6,7 @@
   "bin": "cli.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "cross-env NODE_ENV=test nyc ava",
+    "test": "cross-env NODE_ENV=test nyc --all ava",
     "coverage:report:html": "nyc report --reporter=html",
     "coverage:report:codacy": "cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage",
     "watch:test": "cross-env NODE_ENV=test ava --watch"
@@ -26,6 +26,7 @@
   "devDependencies": {
     "ava": "^0.23.0",
     "codacy-coverage": "^2.0.3",
+    "command-line-test": "^1.0.10",
     "cross-env": "^5.1.0",
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
@@ -68,6 +69,12 @@
         95
       ]
     },
+    "exclude": [
+      "index.js",
+      "cli.js",
+      "test/**",
+      "coverage/**"
+    ],
     "reporter": [
       "lcovonly",
       "text"
