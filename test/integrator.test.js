@@ -13,7 +13,10 @@ test('extend()', t => {
         get: {
           description: 'get path1',
           parameters: [],
-          responses: {},
+          responses: {
+            200: {},
+            default: {},
+          },
           integrationA: 'integrationABody',
           integrationB: 'integrationBBody',
         },
@@ -69,14 +72,14 @@ test('extend()', t => {
   /* eslint-enable eqeqeq */
 })
 
-test('cloneClean() should exclude fields unsupported by AWS', t => {
+test('cleanApi() should exclude fields unsupported by AWS', t => {
   const expected = {
     paths: {
       '/path1': {
         get: {
           description: 'get path1',
           parameters: [],
-          responses: {},
+          responses: {200: {}},
         },
         post: {
           description: 'post path1',
@@ -121,7 +124,8 @@ test('cloneClean() should exclude fields unsupported by AWS', t => {
       },
     },
   }
-  const actual = integrator.cloneClean(t.context.api, 'AWS')
+  const actual =
+    integrator.cleanApi(t.context.api, ['definitions.*.properties.*.example', 'paths.*.*.responses.default'])
   t.deepEqual(actual, expected)
   /* eslint-disable eqeqeq */
   t.true(actual != t.context.api, 'extend() should not mutate api object, but return a new extended object')

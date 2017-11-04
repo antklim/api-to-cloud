@@ -4,7 +4,10 @@
       "get": {
         "description": "get path1",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {},
+          "default": {}
+        }
       },
       "post": {
         "description": "post path1",
