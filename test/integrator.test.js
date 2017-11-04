@@ -13,7 +13,10 @@ test('extend()', t => {
         get: {
           description: 'get path1',
           parameters: [],
-          responses: {},
+          responses: {
+            200: {},
+            default: {},
+          },
           integrationA: 'integrationABody',
           integrationB: 'integrationBBody',
         },
@@ -43,10 +46,90 @@ test('extend()', t => {
         },
       },
     },
+    definitions: {
+      Pet: {
+        type: 'object',
+        required: ['id', 'name'],
+        properties: {
+          id: {type: 'integer', format: 'int64', example: 1},
+          name: {type: 'string', example: 'Joe'},
+          tag: {type: 'string', example: 'joedog'},
+        },
+      },
+      Error: {
+        required: ['code', 'message'],
+        properties: {
+          code: {type: 'integer', format: 'int32', example: 404},
+          message: {type: 'string', example: 'Resource Not Found'},
+        },
+      },
+    },
   }
   const actual = integrator.extend(t.context.api, t.context.integrations)
   t.deepEqual(actual, expected)
+  /* eslint-disable eqeqeq */
   t.true(actual != t.context.api, 'extend() should not mutate api object, but return a new extended object')
+  /* eslint-enable eqeqeq */
+})
+
+test('cleanApi() should exclude fields unsupported by AWS', t => {
+  const expected = {
+    paths: {
+      '/path1': {
+        get: {
+          description: 'get path1',
+          parameters: [],
+          responses: {200: {}},
+        },
+        post: {
+          description: 'post path1',
+          parameters: [],
+          responses: {},
+        },
+        put: {
+          description: 'put path1',
+          parameters: [],
+          responses: {},
+        },
+      },
+      '/path2': {
+        get: {
+          description: 'get path2',
+          parameters: [],
+          responses: {},
+        },
+        delete: {
+          description: 'delete path2',
+          parameters: [],
+          responses: {},
+        },
+      },
+    },
+    definitions: {
+      Pet: {
+        type: 'object',
+        required: ['id', 'name'],
+        properties: {
+          id: {type: 'integer', format: 'int64'},
+          name: {type: 'string'},
+          tag: {type: 'string'},
+        },
+      },
+      Error: {
+        required: ['code', 'message'],
+        properties: {
+          code: {type: 'integer', format: 'int32'},
+          message: {type: 'string'},
+        },
+      },
+    },
+  }
+  const actual =
+    integrator.cleanApi(t.context.api, ['definitions.*.properties.*.example', 'paths.*.*.responses.default'])
+  t.deepEqual(actual, expected)
+  /* eslint-disable eqeqeq */
+  t.true(actual != t.context.api, 'extend() should not mutate api object, but return a new extended object')
+  /* eslint-enable eqeqeq */
 })
 
 test('reduceIntegrations() should reduce object into tuples', t => {

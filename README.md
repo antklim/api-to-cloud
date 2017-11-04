@@ -26,6 +26,7 @@ Usage: api-to-cloud [options]
     -a, --api <path>          API definition file path
     -i, --integration <path>  API integration file path
     -o, --output <path>       path to output extended API file
+    -c, --cloud [cloud]       cloud provider [AWS], default 'AWS'
     -f, --format [format]     output file format [yaml|yml|json], default 'yaml'
     -h, --help                output usage information
 ```
@@ -88,9 +89,10 @@ The `integrator` module provides utilities for merging pure API description in `
 const {integrator} = require('@antklim/api-to-cloud')
 ```
 
-### integrator.extend(api, integrationPaths)
+### integrator.extend(api, integrationPaths, cloud)
 * `api` Object - Swagger API definition
 * `integrationPaths` Object - cloud integration points to add to API
+* `cloud` String - target cloud provider, [AWS]
 * Returns: Object - extended Swagger API (API + integrations)
 
 Format of the integration points object:
@@ -132,6 +134,11 @@ Example of integration object:
       passthroughBehavior: "when_no_match"
       type: "mock"
 ```
+
+### integrator.cleanApi(api, removables)
+* `api` Object - Swagger API definition
+* `removables` Array - the list of paths to remove from the API description
+* Returns: Object - API definition cleaned from removables
 
 ## Built With
 * [js-yaml](https://github.com/nodeca/js-yaml) - YAML parser/encoder for JavaScript
