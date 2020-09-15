@@ -28,7 +28,7 @@ test('CLI should require mandatory parameters', async t => {
 
 test('CLI should successfully accept all mandatory parameters', async t => {
   const options = {api: 'api.yaml', integration: 'integration.yaml', output: 'aws.yaml'}
-  await t.notThrows(cli.validate(options))
+  await t.notThrows(() => { cli.validate(options) })
 })
 
 test('CLI should run workflow', async t => {
@@ -43,7 +43,7 @@ test('CLI should run workflow', async t => {
   td.when(integrator.extend({api: {}}, {integration: {}})).thenReturn({api: {integration: {}}})
   td.when(encoder.save({api: {integration: {}}}, 'aws.yaml', 'yaml')).thenReturn(Promise.resolve())
 
-  await t.notThrows(cli.runWorkflow(options))
+  await t.notThrows(() => { cli.runWorkflow(options) })
 })
 
 test('CLI run should stop on error', async t => {
