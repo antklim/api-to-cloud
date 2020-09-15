@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "ava": "^3.12.1",
-    "codacy-coverage": "^2.0.3",
+    "codacy-coverage": "^3.4.0",
     "command-line-test": "^1.0.10",
     "cross-env": "^5.1.0",
     "eslint": "^4.9.0",
