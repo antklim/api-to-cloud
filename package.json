@@ -29,7 +29,7 @@
     "codacy-coverage": "^3.4.0",
     "command-line-test": "^1.0.10",
     "cross-env": "^5.1.0",
-    "eslint": "^4.9.0",
+    "eslint": "^8.29.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-ava": "^4.2.2",
     "eslint-plugin-import": "^2.7.0",
